@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block navbar %}
+<ul class="nav nav-pills">
+    <li role="presentation" class="active"><a href="{{ url_for('index') }}">New Search</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<h3>Your query was: <i>{{user_query}}</i> </h3>
+
+<h3>Your smart search results</h3>
+<table class="table table-bordered table-condensed">
+    <thead class="bg-light">
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Abstract Brief</th>
+            <th scope="col">Abstract Full</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for thesis in nlp_result %}
+        <tr>
+            <td><a href={{ thesis.Url}}>{{ thesis.Title }}</a></td>
+            <td>{{thesis.Summary}}</td>
+            <td>{{ thesis.Abstract }} </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Please provide your feedback (optional) and score the search result</h3>
+<form action="" method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    <p>>
+        {{form.user_feedback.label}}
+        {{form.user_feedback(size=255)}}
+    </p>
+    <p>>
+        {{form.user_score.label}}
+        {{form.user_score}}
+    </p>
+
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <p>{{ form.submit(class_="btn btn-primary btn-lg") }}</p>
+            </div>
+        </div>
+    </div>
+</form>
+
+<h3>The total number of theses Ethos returned is: <i>{{total_replies}}</i></h3>
+
+<h3>Your first search results from Ethos</h3>
+<table class="table table-bordered table-condensed">
+    <thead class="bg-light">
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Abstract</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for thesis in ethos_result %}
+        <tr>
+            <td>{{ thesis.Title }}</td>
+            <td>{{ thesis.Abstract }} </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

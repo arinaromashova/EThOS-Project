@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block content %}
+<style>
+    img {
+        display: block;
+        margin-top: 20%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<img src="{{url_for('static', filename='logo.png')}}" alt="Ethos Smart Search" class="center">
+<form action="" method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    <p>>
+        <!-- {{form.search_query.label}} -->
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                {{form.search_query(size=100, class_="form-control input-lg")}}
+            </div>
+        </div>
+    </div>
+    </p>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <p>{{ form.number_of_results.label}}{{ form.number_of_results(class_="btn btn-default dropdown-toggle")
+                    }}</p>
+            </div>
+            <div class="col text-center">
+                <p>{{ form.submit(class_="btn btn-primary btn-lg") }}</p>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
