@@ -1,6 +1,7 @@
 # EThOS-Project
 
 Introduction and functionality description
+
 The main objective of this tool is to assist a user in finding the most relevant theses to the user query in the Ethos database. This is achieved by using the modern NLP models for the sentence(s) embedding and semantic similarity search. 
 
 The tool converts the user request into a vector and performs a semantic search based on the theses’ titles and abstracts embeddings. The five most relevant theses are then displayed to the user along with the results from the Ethos database for the same query. 
